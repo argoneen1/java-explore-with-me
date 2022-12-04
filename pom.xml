@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-    <modules>
-        <module>statistics</module>
+	<modules>
+		<module>statistics</module>
 		<module>main</module>
-    </modules>
+		<module>config</module>
+	</modules>
 
-    <parent>
+	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.2</version>
@@ -74,7 +75,7 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
-    </dependencies>
+	</dependencies>
 
 
 	<build>
@@ -257,6 +258,37 @@
 						</execution>
 					</executions>
 				</plugin>
+
+				<plugin>
+					<groupId>io.fabric8</groupId>
+					<artifactId>docker-maven-plugin</artifactId>
+					<version>0.20.1</version>
+					<configuration>
+						<images>
+							<image>
+								<name>app</name>
+								<build>
+									<dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
+									<assembly>
+										<mode>dir</mode>
+										<targetDir>/app</targetDir>
+										<descriptor>${project.basedir}/src/main/docker/assembly.xml</descriptor>
+									</assembly>
+								</build>
+							</image>
+						</images>
+					</configuration>
+					<executions>
+						<execution>
+							<id>build</id>
+							<phase>install</phase>
+							<goals>
+								<goal>build</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>

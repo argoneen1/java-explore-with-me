@@ -6,24 +6,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.Check;
 import org.hibernate.annotations.Formula;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
 import ru.practicum.ewm.base.model.Base;
 import ru.practicum.ewm.category.model.Category;
 import ru.practicum.ewm.compilation.model.Compilation;
-import ru.practicum.ewm.model.View;
 import ru.practicum.ewm.user.model.User;
+import ru.practicum.statservice.StatsClient;
+import ru.practicum.statservice.View;
 
 import javax.persistence.*;
-import java.nio.charset.StandardCharsets;
-import java.rmi.ServerException;
+import java.net.URI;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Set;
-
-import static ru.practicum.ewm.Configuration.DATE_TIME_FORMAT;
 
 @Getter
 @Setter
@@ -84,38 +79,20 @@ public class Event extends Base {
     }
 
     @Transient
-    private static WebClient client;
+    private static StatsClient client;
 
     @Autowired
-    public void setWebClient(WebClient client) {
+    public void setStatsClient(StatsClient client) {
         Event.client = client;
     }
 
     public long getViews() {
-        String beginDateString = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT).format(LocalDateTime.now().minusYears(100));
-        String endDateString = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT).format(LocalDateTime.now().plusYears(100));
-        String uri = "/stats/" +
-                "?start=" + beginDateString +
-                "&end=" + endDateString +
-                "&uris=events/" + getId() +
-                "&unique=true";
-        View[] views;
-        try {
-            views = client.get()
-                    .uri(uri)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .acceptCharset(StandardCharsets.UTF_8)
-                    .retrieve()
-                    .onStatus(HttpStatus::isError,
-                            r -> r.bodyToMono(String.class)
-                                    .map(body -> new ServerException("server doesnt response: " + body)))
-                    .bodyToMono(ru.practicum.ewm.model.View[].class)
-                    .block();
-        } catch (RuntimeException e) {
-            log.info("server doesnt response");
-            return 0;
-        }
-        return views == null || views.length == 0 ? 0 : views[0].getHits();
+        List<View> views = client.getStatistics(
+                LocalDateTime.now().minusYears(100),
+                LocalDateTime.now().plusYears(100),
+                List.of(URI.create("events/" + getId())),
+                true);
+        return views == null || views.size() == 0 ? 0 : views.get(0).getHits();
     }
 
     @Override

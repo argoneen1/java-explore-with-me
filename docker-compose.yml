@@ -1,15 +1,49 @@
 version: '3.1'
 services:
   stats-server:
+    build: statistics
+    container_name: exploreWithMe-statistics
     ports:
       - "9090:9090"
+    depends_on:
+      - stats-db
+
 
   stats-db:
     image: postgres:14-alpine
 
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "6542:5432"
+    environment:
+      - DB_NAME=explore_with_me_db
+      - POSTGRES_DB=explore_with_me_db
+      - POSTGRES_USER=explore_with_me_admin
+      - POSTGRES_PASSWORD=qscesz
+      - DB_HOST=db
+      - DB_PORT=5432
+
+
   ewm-service:
+    build: main
+    container_name: exploreWithMe-main
     ports:
       - "8080:8080"
+    depends_on:
+      - ewm-db
+      - stats-server
 
   ewm-db:
     image: postgres:14-alpine
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "6541:5432"
+    environment:
+      - DB_NAME=explore_with_me_db
+      - POSTGRES_DB=explore_with_me_db
+      - POSTGRES_USER=explore_with_me_admin
+      - POSTGRES_PASSWORD=qscesz
+      - DB_HOST=db
+      - DB_PORT=5432

@@ -20,6 +20,7 @@ public class CompilationServiceImpl implements CompilationService {
     private final CompilationRepository repository;
     private final CompilationMapper mapper;
     private final EventService eventService;
+
     @Override
     public Page<Compilation> findAllByPinned(Boolean isPinned, Pageable pageable) {
         return repository.findAllByPinnedOrPinnedIsNull(isPinned, pageable);

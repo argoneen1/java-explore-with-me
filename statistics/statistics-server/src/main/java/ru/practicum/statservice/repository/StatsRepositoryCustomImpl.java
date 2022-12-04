@@ -25,9 +25,9 @@ public class StatsRepositoryCustomImpl implements StatsRepositoryCustom {
         CriteriaBuilder.In<URI> in = cb.in(hit.get("uri"));
         uris.forEach(in::value);
         query.multiselect(
-                    hit.get("app"),
-                    hit.get("uri"),
-                    unique ? cb.countDistinct(hit.get("ip")) : cb.count(hit.get("ip")))
+                        hit.get("app"),
+                        hit.get("uri"),
+                        unique ? cb.countDistinct(hit.get("ip")) : cb.count(hit.get("ip")))
                 .where(cb.and(cb.between(hit.get("timestamp"), start, end), in))
                 .groupBy(hit.get("app"), hit.get("uri"));
         return entityManager.createQuery(query).getResultList();

@@ -29,57 +29,43 @@ import java.util.Set;
 @Table(name = "events")
 public class Event extends Base {
 
+    @Transient
+    private static StatsClient client;
     @Column(length = 120, nullable = false)
-    private  String title;
-
+    private String title;
     @Column(length = 2000, nullable = false)
     private String annotation;
-
     @Column(length = 7000, nullable = false)
     private String description;
-
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private Category category;
-
     @ManyToOne
     @JoinColumn(name = "initiator_id", referencedColumnName = "id", nullable = false)
     private User initiator;
-
     @Enumerated
     @Column
     private State state;
-
     @Column(nullable = false)
     private LocalDateTime eventDate;
-
     @Column
     private LocalDateTime publishedOn;
-
     @Column(nullable = false)
     private Boolean paid;
-
     @Column
     private Boolean requestModeration;
-
     @Column
     private Integer participantLimit;
-
     @Embedded
     private Location location;
-
     @Formula("(SELECT COUNT(pr.event_id) FROM participation_requests AS pr WHERE pr.event_id = id)")
     private Integer confirmedRequests;
-
     @ManyToMany(mappedBy = "events")
     private Set<Compilation> eventCompilations;
 
     public Event() {
         super();
     }
-
-    @Transient
-    private static StatsClient client;
 
     @Autowired
     public void setStatsClient(StatsClient client) {

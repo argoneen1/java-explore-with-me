@@ -1,6 +1,6 @@
 package ru.practicum.ewm.exceptions;
 
-public class UniqueException extends IllegalArgumentException{
+public class UniqueException extends IllegalArgumentException {
 
     public UniqueException() {
         super();

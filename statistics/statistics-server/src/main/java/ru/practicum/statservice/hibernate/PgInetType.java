@@ -15,7 +15,8 @@ import java.sql.Types;
 
 public class PgInetType implements UserType {
 
-    public PgInetType() {}
+    public PgInetType() {
+    }
 
     @Override
     public Object assemble(Serializable cached, Object owner) {
@@ -41,7 +42,7 @@ public class PgInetType implements UserType {
 
     @Override
     public boolean equals(Object x, Object y) {
-        return x == y || ( x != null && y != null && x.equals( y ) );
+        return x == y || (x != null && y != null && x.equals(y));
     }
 
     @Override
@@ -76,8 +77,7 @@ public class PgInetType implements UserType {
                             SharedSessionContractImplementor session) throws SQLException {
         if (value == null) {
             st.setNull(index, Types.VARCHAR);
-        }
-        else {
+        } else {
             PGobject pgObj = new PGobject();
             pgObj.setType("inet");
             pgObj.setValue(((InetAddress) value).getHostAddress());
@@ -98,7 +98,7 @@ public class PgInetType implements UserType {
 
     @Override
     public int[] sqlTypes() {
-        return new int[] {Types.OTHER};
+        return new int[]{Types.OTHER};
     }
 
 }

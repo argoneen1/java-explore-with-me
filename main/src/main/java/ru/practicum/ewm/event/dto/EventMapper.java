@@ -8,7 +8,7 @@ import ru.practicum.ewm.event.model.Event;
 import ru.practicum.ewm.user.dto.UserMapper;
 
 @Mapper(uses = {CategoryMapper.class, UserMapper.class, ReferenceMapper.class})
-public interface EventMapper extends BaseMapper<EventInsertDto, Event, EventFullDto>{
+public interface EventMapper extends BaseMapper<EventInsertDto, Event, EventFullDto> {
 
 
     @Mapping(target = "initiator", source = "initiatorId")

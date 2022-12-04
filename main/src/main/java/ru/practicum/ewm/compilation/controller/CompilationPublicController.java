@@ -22,6 +22,7 @@ public class CompilationPublicController {
 
     private final CompilationService service;
     private final CompilationMapper mapper;
+
     @GetMapping
     public List<CompilationDto> findAllByPinned(
             @RequestParam(required = false) Boolean pinned,

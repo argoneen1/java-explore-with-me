@@ -19,6 +19,7 @@ public class ParticipationRequestConfirmationController {
 
     private final ParticipationRequestService service;
     private final ParticipationRequestMapper mapper;
+
     @GetMapping
     public List<ParticipationRequestDto> findAllByRequesterIdAndEventId(
             @PathVariable Long userId,

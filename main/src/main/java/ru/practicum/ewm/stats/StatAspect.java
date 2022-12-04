@@ -35,7 +35,7 @@ public class StatAspect {
         Arrays.stream(pjp.getArgs())
                 .filter(o -> o instanceof HttpServletRequest)
                 .map(o -> (HttpServletRequest) o)
-                .findAny().ifPresent(request ->  {
+                .findAny().ifPresent(request -> {
                     HitDto hit;
                     try {
                         hit = new HitDto("main",

@@ -9,8 +9,11 @@ import ru.practicum.ewm.category.model.Category;
 public interface CategoryService extends FindByIdService<Category, Long> {
 
     Category create(CategoryDto elem);
+
     Category update(CategoryDto elem);
+
     Page<Category> findAll(Pageable pageable);
+
     void delete(long id);
 
 }

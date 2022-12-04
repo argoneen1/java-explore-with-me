@@ -44,7 +44,7 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
                 .orElseThrow(() -> new NoSuchElementException("there is no event with id " + eventId))
                 .getInitiator()
                 .getId()
-                .equals(userId)){
+                .equals(userId)) {
             throw new IllegalArgumentException();
         }
         return repository.findAllByEventId(eventId);

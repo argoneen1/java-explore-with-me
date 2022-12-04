@@ -24,6 +24,7 @@ public class EventAdminController {
 
     private final EventService service;
     private final EventMapper mapper;
+
     @GetMapping("/admin/events")
     public List<EventFullDto> findAllFromAdmin(
             @RequestParam(required = false) List<Long> users,
@@ -36,12 +37,12 @@ public class EventAdminController {
             @RequestParam(required = false, defaultValue = "#{${default-page-size}}") @Positive int size
     ) {
         return service.findAllFromAdmin(
-                users,
-                states,
-                categories,
-                rangeStart,
-                rangeEnd,
-                PageRequest.of(from / size, size)).stream()
+                        users,
+                        states,
+                        categories,
+                        rangeStart,
+                        rangeEnd,
+                        PageRequest.of(from / size, size)).stream()
                 .map(mapper::toGetDto)
                 .collect(Collectors.toList());
     }

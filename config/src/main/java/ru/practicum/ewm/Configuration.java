@@ -15,9 +15,10 @@ import java.util.Locale;
 public class Configuration {
 
     public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer(
-            @Value(DATE_TIME_FORMAT)String dateTimeFormat) {
+            @Value(DATE_TIME_FORMAT) String dateTimeFormat) {
         return builder -> builder
                 .simpleDateFormat(dateTimeFormat)
                 .serializers(new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(dateTimeFormat)))

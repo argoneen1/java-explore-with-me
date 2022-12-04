@@ -16,10 +16,11 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
     private final UserMapper mapper;
+
     @Override
     public List<UserDto> findAllDto(List<Long> ids, Pageable pageable) {
         return ids.isEmpty() ?

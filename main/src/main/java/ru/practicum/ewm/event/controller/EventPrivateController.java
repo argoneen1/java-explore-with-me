@@ -26,6 +26,7 @@ public class EventPrivateController {
 
     private final EventService service;
     private final EventMapper mapper;
+
     @GetMapping
     public List<EventShortDto> findAllByInitiatorId(
             @PathVariable Long userId,

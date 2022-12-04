@@ -28,15 +28,6 @@ import java.util.stream.Collectors;
 @Stats
 public class EventPublicController {
 
-    public enum SortOption {
-        EVENT_DATE("eventDate"),
-        VIEWS("views");
-        SortOption(String entityFieldName) {
-            this.entityFieldName = entityFieldName;
-        }
-        public final String entityFieldName;
-    }
-
     private final EventService service;
     private final EventMapper mapper;
 
@@ -73,5 +64,16 @@ public class EventPublicController {
     public EventFullDto findByIdPublished(@PathVariable Long id, HttpServletRequest request) {
         return mapper.toGetDto(service.findByIdPublished(id)
                 .orElseThrow(() -> new NoSuchElementException("there is no such event with id " + id)));
+    }
+
+    public enum SortOption {
+        EVENT_DATE("eventDate"),
+        VIEWS("views");
+
+        public final String entityFieldName;
+
+        SortOption(String entityFieldName) {
+            this.entityFieldName = entityFieldName;
+        }
     }
 }

@@ -20,6 +20,7 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository repository;
     private final EventMapper mapper;
+
     @Override
     public Page<Event> findAll(String searchText,
                                List<Long> categories,

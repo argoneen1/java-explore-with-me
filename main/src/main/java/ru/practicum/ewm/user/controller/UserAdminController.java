@@ -22,6 +22,7 @@ public class UserAdminController {
 
     private final UserService service;
     private final UserMapper mapper;
+
     @GetMapping
     public List<UserDto> findAll(
             @RequestParam List<Long> ids,

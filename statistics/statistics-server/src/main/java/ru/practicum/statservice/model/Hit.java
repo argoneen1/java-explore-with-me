@@ -2,6 +2,7 @@ package ru.practicum.statservice.model;
 
 import lombok.*;
 import org.hibernate.annotations.TypeDef;
+import ru.practicum.statservice.hibernate.InetAddressAttributeConverter;
 import ru.practicum.statservice.hibernate.PgInetType;
 import ru.practicum.statservice.hibernate.URIAttributeConverter;
 
@@ -35,7 +36,8 @@ public class Hit {
     @Convert(converter = URIAttributeConverter.class)
     private URI uri;
 
-    @Column(columnDefinition = "inet")
+    @Column(columnDefinition = "varchar(32)")
+    @Convert(converter = InetAddressAttributeConverter.class)
     private InetAddress ip;
 
     @Column

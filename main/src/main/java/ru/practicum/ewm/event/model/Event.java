@@ -1,5 +1,6 @@
 package ru.practicum.ewm.event.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,8 @@ import java.util.Set;
 public class Event extends Base {
 
     @Transient
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private static StatsClient client;
     @Column(length = 120, nullable = false)
     private String title;

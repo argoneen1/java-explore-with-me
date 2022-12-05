@@ -106,8 +106,10 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.5.1</version>
+                    <version>3.8.0</version>
                     <configuration>
+                        <source>11</source>
+                        <target>11</target>
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.projectlombok</groupId>
@@ -135,6 +137,10 @@
                             <exclude>
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
+                            </exclude>
+                            <exclude>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
                             </exclude>
                         </excludes>
                     </configuration>
@@ -191,6 +197,7 @@
                         </execution>
                     </executions>
                 </plugin>
+                -->
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
@@ -259,37 +266,6 @@
                         </execution>
                     </executions>
                 </plugin>
--->
-                <plugin>
-                    <groupId>io.fabric8</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>0.20.1</version>
-                    <configuration>
-                        <images>
-                            <image>
-                                <name>app</name>
-                                <build>
-                                    <dockerFileDir>${project.basedir}/src/main/docker</dockerFileDir>
-                                    <assembly>
-                                        <mode>dir</mode>
-                                        <targetDir>/app</targetDir>
-                                        <descriptor>${project.basedir}/src/main/docker/assembly.xml</descriptor>
-                                    </assembly>
-                                </build>
-                            </image>
-                        </images>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>build</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>build</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
             </plugins>
         </pluginManagement>
     </build>
@@ -301,13 +277,26 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
+                        <configuration>
+                            <sourceDirectories>
+                                <sourceDirectory>
+                                    ${project.build.sourceDirectory}
+                                </sourceDirectory>
+                                <sourceDirectory>
+                                    ${project.build.testSourceDirectory}
+                                </sourceDirectory>
+                            </sourceDirectories>
+                        </configuration>
                     </plugin>
+                    <!--
                     <plugin>
                         <groupId>com.github.spotbugs</groupId>
                         <artifactId>spotbugs-maven-plugin</artifactId>
                     </plugin>
+                    -->
                 </plugins>
             </build>
+            <!--
             <reporting>
                 <plugins>
                     <plugin>
@@ -316,6 +305,7 @@
                     </plugin>
                 </plugins>
             </reporting>
+            -->
         </profile>
         <profile>
             <id>coverage</id>

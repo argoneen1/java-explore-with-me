@@ -1,7 +1,6 @@
 package ru.practicum.statservice;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,13 +19,11 @@ import static ru.practicum.ewm.Configuration.DATE_TIME_FORMAT;
 
 @Slf4j
 public class StatsClientImpl implements StatsClient {
-
-    @Value("${stats-server:http://stats-server:9090}")//Заинлайнил, потому что application/properties не может найти переменную
-    private String address;
     private final WebClient client;
 
     public StatsClientImpl(WebClient.Builder client) {
-        this.client = client.baseUrl("http://stats-server:9090").build();
+        this.client = client.build();
+        System.out.println("ABOBA " + this.client.mutate());
     }
 
     @Override

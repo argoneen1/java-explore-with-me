@@ -1,4 +1,6 @@
 version: '3.1'
+
+
 services:
   stats-server:
     build: statistics
@@ -33,10 +35,13 @@ services:
     container_name: explore-with-me-main
     ports:
       - "8080:8080"
+    expose:
+      - "9090"
     depends_on:
       - ewm-db
       - stats-server
     environment:
+      - STATS_SERVER=http://stats-server:9090
       - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/explore_with_me_db
       - SPRING_DATASOURCE_USERNAME=explore_with_me_admin
       - SPRING_DATASOURCE_PASSWORD=qscesz

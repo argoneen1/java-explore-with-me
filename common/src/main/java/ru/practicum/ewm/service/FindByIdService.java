@@ -1,4 +1,4 @@
-package ru.practicum.ewm.base.service;
+package ru.practicum.ewm.service;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;

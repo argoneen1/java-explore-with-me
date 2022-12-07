@@ -2,9 +2,9 @@ package ru.practicum.ewm.category.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ru.practicum.ewm.base.service.FindByIdService;
 import ru.practicum.ewm.category.dto.CategoryDto;
 import ru.practicum.ewm.category.model.Category;
+import ru.practicum.ewm.service.FindByIdService;
 
 public interface CategoryService extends FindByIdService<Category, Long> {
 

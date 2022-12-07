@@ -1,6 +1,6 @@
-package ru.practicum.ewm.base;
+package ru.practicum.ewm.mapper;
 
-import ru.practicum.ewm.base.model.Base;
+import ru.practicum.ewm.model.Base;
 
 public interface BaseMapper<I, E extends Base, G> {
 

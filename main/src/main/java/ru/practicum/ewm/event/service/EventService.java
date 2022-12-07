@@ -2,10 +2,10 @@ package ru.practicum.ewm.event.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ru.practicum.ewm.base.service.FindByIdService;
 import ru.practicum.ewm.event.dto.EventInsertDto;
 import ru.practicum.ewm.event.model.Event;
 import ru.practicum.ewm.event.model.State;
+import ru.practicum.ewm.service.FindByIdService;
 
 import java.time.LocalDateTime;
 import java.util.List;

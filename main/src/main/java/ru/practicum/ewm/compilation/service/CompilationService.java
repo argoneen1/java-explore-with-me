@@ -2,9 +2,9 @@ package ru.practicum.ewm.compilation.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ru.practicum.ewm.base.service.FindByIdService;
 import ru.practicum.ewm.compilation.dto.CompilationInsertDto;
 import ru.practicum.ewm.compilation.model.Compilation;
+import ru.practicum.ewm.service.FindByIdService;
 
 public interface CompilationService extends FindByIdService<Compilation, Long> {
 

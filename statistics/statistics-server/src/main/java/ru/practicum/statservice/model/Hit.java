@@ -2,14 +2,17 @@ package ru.practicum.statservice.model;
 
 import lombok.*;
 import org.hibernate.annotations.TypeDef;
+import ru.practicum.ewm.model.Base;
 import ru.practicum.statservice.hibernate.InetAddressAttributeConverter;
 import ru.practicum.statservice.hibernate.PgInetType;
 import ru.practicum.statservice.hibernate.URIAttributeConverter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.net.InetAddress;
 import java.net.URI;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,12 +25,7 @@ import java.time.LocalDateTime;
         typeClass = PgInetType.class,
         defaultForType = InetAddress.class
 )
-public class Hit {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long id;
+public class Hit extends Base {
 
     @Column
     private String app;
@@ -39,8 +37,5 @@ public class Hit {
     @Column(columnDefinition = "varchar(32)")
     @Convert(converter = InetAddressAttributeConverter.class)
     private InetAddress ip;
-
-    @Column
-    private LocalDateTime timestamp;
 
 }

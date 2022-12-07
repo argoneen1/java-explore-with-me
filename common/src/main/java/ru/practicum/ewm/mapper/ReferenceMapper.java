@@ -1,4 +1,4 @@
-package ru.practicum.ewm.base;
+package ru.practicum.ewm.mapper;
 
 import org.mapstruct.ObjectFactory;
 import org.mapstruct.TargetType;

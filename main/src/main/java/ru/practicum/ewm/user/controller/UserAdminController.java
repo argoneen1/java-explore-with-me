@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @Validated
@@ -28,7 +29,9 @@ public class UserAdminController {
             @RequestParam List<Long> ids,
             @RequestParam(required = false, defaultValue = "0") @PositiveOrZero int from,
             @RequestParam(required = false, defaultValue = "#{${default-page-size}}") @Positive int size) {
-        return service.findAllDto(ids, PageRequest.of(from / size, size));
+        return service.findAll(ids, PageRequest.of(from / size, size)).stream()
+                .map(mapper::toGetDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping

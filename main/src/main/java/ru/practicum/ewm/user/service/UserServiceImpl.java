@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.practicum.ewm.exceptions.UniqueException;
 import ru.practicum.ewm.user.UserRepository;
-import ru.practicum.ewm.user.dto.UserDto;
 import ru.practicum.ewm.user.dto.UserInsertDto;
 import ru.practicum.ewm.user.dto.UserMapper;
 import ru.practicum.ewm.user.model.User;
@@ -22,10 +21,10 @@ public class UserServiceImpl implements UserService {
     private final UserMapper mapper;
 
     @Override
-    public List<UserDto> findAllDto(List<Long> ids, Pageable pageable) {
+    public List<User> findAll(List<Long> ids, Pageable pageable) {
         return ids.isEmpty() ?
-                repository.findAllDto(pageable).getContent() :
-                repository.findAllByIdDto(ids);
+                repository.findAll(pageable).getContent() :
+                repository.findAllById(ids);
     }
 
     @Override

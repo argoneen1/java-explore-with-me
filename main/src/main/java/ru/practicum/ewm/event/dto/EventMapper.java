@@ -1,10 +1,10 @@
 package ru.practicum.ewm.event.dto;
 
 import org.mapstruct.*;
-import ru.practicum.ewm.base.BaseMapper;
-import ru.practicum.ewm.base.ReferenceMapper;
 import ru.practicum.ewm.category.dto.CategoryMapper;
 import ru.practicum.ewm.event.model.Event;
+import ru.practicum.ewm.mapper.BaseMapper;
+import ru.practicum.ewm.mapper.ReferenceMapper;
 import ru.practicum.ewm.user.dto.UserMapper;
 
 @Mapper(uses = {CategoryMapper.class, UserMapper.class, ReferenceMapper.class})

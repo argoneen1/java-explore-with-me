@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.practicum.ewm.base.model.Base;
+import ru.practicum.ewm.model.Base;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

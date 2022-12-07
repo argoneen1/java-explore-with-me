@@ -2,9 +2,9 @@ package ru.practicum.ewm.participation_request.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ru.practicum.ewm.base.service.FindByIdService;
 import ru.practicum.ewm.participation_request.dto.ParticipationRequestInsertDto;
 import ru.practicum.ewm.participation_request.model.ParticipationRequest;
+import ru.practicum.ewm.service.FindByIdService;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package ru.practicum.ewm.compilation.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.practicum.ewm.base.model.Base;
 import ru.practicum.ewm.event.model.Event;
+import ru.practicum.ewm.model.Base;
 
 import javax.persistence.*;
 import java.util.HashSet;

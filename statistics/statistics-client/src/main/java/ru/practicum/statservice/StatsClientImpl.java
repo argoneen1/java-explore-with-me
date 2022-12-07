@@ -15,21 +15,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-import static ru.practicum.ewm.Configuration.DATE_TIME_FORMAT;
-
 @Slf4j
 public class StatsClientImpl implements StatsClient {
     private final WebClient client;
+    private final String dateTimeFormat;
 
-    public StatsClientImpl(WebClient.Builder client) {
+    public StatsClientImpl(WebClient.Builder client, String dateTimeFormat) {
         this.client = client.build();
-        System.out.println("ABOBA " + this.client.mutate());
+        this.dateTimeFormat = dateTimeFormat;
     }
 
     @Override
     public List<View> getStatistics(LocalDateTime from, LocalDateTime to, List<URI> uris, boolean unique) {
-        String beginDateString = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT).format(from);
-        String endDateString = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT).format(to);
+        String beginDateString = DateTimeFormatter.ofPattern(dateTimeFormat).format(from);
+        String endDateString = DateTimeFormatter.ofPattern(dateTimeFormat).format(to);
 
         StringBuilder builder = new StringBuilder("/stats");
         builder.append("?start=").append(beginDateString)

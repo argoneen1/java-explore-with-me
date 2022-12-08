@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS events
     description        VARCHAR(7000)    NOT NULL,
     event_date         TIMESTAMP        NOT NULL
         CONSTRAINT events_event_date_check
-            CHECK (event_date > (CURRENT_TIMESTAMP + ((2)::DOUBLE PRECISION * '01:00:00'::INTERVAL))),
+            CHECK (event_date > (CURRENT_TIMESTAMP + ((2):: DOUBLE PRECISION * '01:00:00':: INTERVAL))),
     lat                DOUBLE PRECISION NOT NULL,
     lon                DOUBLE PRECISION NOT NULL,
     paid               BOOLEAN          NOT NULL,
@@ -51,9 +51,9 @@ CREATE TABLE IF NOT EXISTS event_compilations
 CREATE TABLE IF NOT EXISTS event_compilation_event
 (
     event_compilation_id BIGINT NOT NULL
-            REFERENCES event_compilations,
+        REFERENCES event_compilations,
     event_id             BIGINT NOT NULL
-            REFERENCES events,
+        REFERENCES events,
     PRIMARY KEY (event_compilation_id, event_id)
 );
 

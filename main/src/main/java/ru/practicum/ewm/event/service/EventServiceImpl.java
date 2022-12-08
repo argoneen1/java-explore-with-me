@@ -1,6 +1,8 @@
 package ru.practicum.ewm.event.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -9,7 +11,11 @@ import ru.practicum.ewm.event.dto.EventInsertDto;
 import ru.practicum.ewm.event.dto.EventMapper;
 import ru.practicum.ewm.event.model.Event;
 import ru.practicum.ewm.event.model.State;
+import ru.practicum.ewm.participation_request.service.ParticipationRequestService;
+import ru.practicum.statservice.StatsClient;
+import ru.practicum.statservice.View;
 
+import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +26,10 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository repository;
     private final EventMapper mapper;
+    private final StatsClient client;
+    @Autowired
+    @Lazy
+    private ParticipationRequestService requestService;
 
     @Override
     public Page<Event> findAll(String searchText,
@@ -81,6 +91,18 @@ public class EventServiceImpl implements EventService {
             throw new IllegalArgumentException("initiator id and requester id do not matches");
         }
         return event;
+    }
+
+
+    @Override
+    public long getViews(Long eventId) {
+        List<View> views = client.getStatistics(
+                LocalDateTime.now().minusYears(100),
+                LocalDateTime.now().plusYears(100),
+                List.of(URI.create("events/" + eventId)),
+                true);
+        return views == null || views.size() == 0 ? 0 : views.get(0).getHits();
+
     }
 
     @Override

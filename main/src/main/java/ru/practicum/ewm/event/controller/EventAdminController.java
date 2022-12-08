@@ -43,8 +43,7 @@ public class EventAdminController {
                         rangeStart,
                         rangeEnd,
                         PageRequest.of(from / size, size)).stream()
-                .map(mapper::toGetDto)
-                .collect(Collectors.toList());
+                .map(mapper::toGetDto).collect(Collectors.toList());
     }
 
     @PutMapping("/admin/events/{id}")

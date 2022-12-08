@@ -16,6 +16,8 @@ public interface ParticipationRequestService extends FindByIdService<Participati
 
     List<ParticipationRequest> findAllByRequesterIdAndEventId(Long requesterId, Long eventId);
 
+    int getNumberOfConfirmedRequests(Long eventId);
+
     ParticipationRequest confirm(Long userId, Long eventId, Long requestId);
 
     ParticipationRequest reject(Long userId, Long eventId, Long requestId);

@@ -56,9 +56,14 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
     }
 
     @Override
+    public int getNumberOfConfirmedRequests(Long eventId) {
+        return repository.countParticipationRequestByEventIdAndStatusEquals(eventId, Status.CONFIRMED);
+    }
+
+    @Override
     public ParticipationRequest confirm(Long userId, Long eventId, Long requestId) {
         Event event = eventService.findByIdOrThrow(eventId);
-        int confirmedRequests = event.getConfirmedRequests();
+        int confirmedRequests = getNumberOfConfirmedRequests(eventId);
         if (confirmedRequests >= event.getParticipantLimit()) {
             throw new IllegalStateException("there are no free requests");
         }

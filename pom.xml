@@ -5,7 +5,7 @@
     <modules>
         <module>statistics</module>
         <module>main</module>
-		<module>common</module>
+        <module>common</module>
         <module>config</module>
     </modules>
 

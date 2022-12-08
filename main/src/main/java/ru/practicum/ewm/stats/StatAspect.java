@@ -11,9 +11,7 @@ import ru.practicum.statservice.HitDto;
 import ru.practicum.statservice.StatsClient;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.InetAddress;
 import java.net.URI;
-import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
@@ -37,14 +35,11 @@ public class StatAspect {
                 .map(o -> (HttpServletRequest) o)
                 .findAny().ifPresent(request -> {
                     HitDto hit;
-                    try {
-                        hit = new HitDto("main",
-                                URI.create(request.getRequestURI()),
-                                InetAddress.getByName(request.getRemoteAddr()),
-                                LocalDateTime.now());
-                    } catch (UnknownHostException e) {
-                        throw new RuntimeException(e);
-                    }
+                    hit = new HitDto("main",
+                            URI.create(request.getRequestURI()),
+                            request.getRemoteAddr(),
+                            LocalDateTime.now());
+
                     client.hit(hit);
                 });
     }

@@ -16,7 +16,6 @@ public class StatsClientConfig {
     public StatsClient getStatsWebClient(
             @Value("${stats-server.address:http://localhost:9090}")
             String url) {
-        System.out.println(url);
         return new StatsClientImpl(WebClient.builder().baseUrl(url), DATE_TIME_FORMAT);
     }
 }

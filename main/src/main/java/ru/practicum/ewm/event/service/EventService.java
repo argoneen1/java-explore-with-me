@@ -12,6 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EventService extends FindByIdService<Event, Long> {
+
+    Event create(EventInsertDto elem);
+
+    Event update(EventInsertDto elem, boolean isValidated);
+
     Page<Event> findAll(String searchText,
                         List<Long> categories,
                         Boolean paid,
@@ -20,17 +25,7 @@ public interface EventService extends FindByIdService<Event, Long> {
                         Boolean onlyAvailable,
                         Pageable pageable);
 
-    Event create(EventInsertDto elem);
-
-    Event update(EventInsertDto elem, boolean isValidated);
-
     Page<Event> findAllByInitiatorId(Long id, Pageable pageable);
-
-    Optional<Event> findByIdPublished(Long id);
-
-    Optional<Event> findByInitiatorIdAndId(Long initiatorId, Long id);
-
-    Optional<Event> cancelEvent(Long initiatorId, Long id);
 
     Page<Event> findAllFromAdmin(
             List<Long> users,
@@ -40,6 +35,14 @@ public interface EventService extends FindByIdService<Event, Long> {
             LocalDateTime rangeEnd,
             Pageable pageable
     );
+
+    Optional<Event> findByIdPublished(Long id);
+
+    Optional<Event> findByInitiatorIdAndId(Long initiatorId, Long id);
+
+    long getViews(Long eventId);
+
+    Optional<Event> cancelEvent(Long initiatorId, Long id);
 
     Event publish(Long id);
 

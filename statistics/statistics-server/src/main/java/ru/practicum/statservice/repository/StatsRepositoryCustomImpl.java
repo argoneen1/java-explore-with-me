@@ -28,7 +28,7 @@ public class StatsRepositoryCustomImpl implements StatsRepositoryCustom {
                         hit.get("app"),
                         hit.get("uri"),
                         unique ? cb.countDistinct(hit.get("ip")) : cb.count(hit.get("ip")))
-                .where(cb.and(cb.between(hit.get("timestamp"), start, end), in))
+                .where(cb.and(cb.between(hit.get("createdOn"), start, end), in))
                 .groupBy(hit.get("app"), hit.get("uri"));
         return entityManager.createQuery(query).getResultList();
     }

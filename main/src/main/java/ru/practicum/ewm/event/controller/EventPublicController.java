@@ -57,7 +57,7 @@ public class EventPublicController {
                 rangeEnd,
                 onlyAvailable,
                 pageable
-        ).getContent().stream().map(mapper::toEventShortDto).collect(Collectors.toList());
+        ).stream().map(mapper::toEventShortDto).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")

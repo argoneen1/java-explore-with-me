@@ -33,9 +33,8 @@ public class EventPrivateController {
             @RequestParam(required = false, defaultValue = "0") @PositiveOrZero int from,
             @RequestParam(required = false, defaultValue = "#{${default-page-size}}") @Positive int size
     ) {
-        return service.findAllByInitiatorId(userId, PageRequest.of(from / size, size)).stream()
-                .map(mapper::toEventShortDto)
-                .collect(Collectors.toList());
+        return service.findAllByInitiatorId(userId, PageRequest.of(from / size, size))
+                .stream().map(mapper::toEventShortDto).collect(Collectors.toList());
     }
 
     @PostMapping

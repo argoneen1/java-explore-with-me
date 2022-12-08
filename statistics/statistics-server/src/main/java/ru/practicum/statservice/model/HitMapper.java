@@ -6,7 +6,6 @@ import ru.practicum.statservice.HitDto;
 
 @Mapper
 public interface HitMapper {
-
     @Mapping(target = "createdOn", source = "timestamp")
     Hit toEntity(HitDto dto);
 }

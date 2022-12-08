@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.net.InetAddress;
 import java.net.URI;
 import java.time.LocalDateTime;
 
@@ -14,6 +13,6 @@ import java.time.LocalDateTime;
 public class HitDto {
     private String app;
     private URI uri;
-    private InetAddress ip;
+    private String ip;
     private LocalDateTime timestamp;
 }

@@ -1,8 +1,6 @@
 package ru.practicum.ewm.event.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -11,7 +9,6 @@ import ru.practicum.ewm.event.dto.EventInsertDto;
 import ru.practicum.ewm.event.dto.EventMapper;
 import ru.practicum.ewm.event.model.Event;
 import ru.practicum.ewm.event.model.State;
-import ru.practicum.ewm.participation_request.service.ParticipationRequestService;
 import ru.practicum.statservice.StatsClient;
 import ru.practicum.statservice.View;
 
@@ -27,9 +24,6 @@ public class EventServiceImpl implements EventService {
     private final EventRepository repository;
     private final EventMapper mapper;
     private final StatsClient client;
-    @Autowired
-    @Lazy
-    private ParticipationRequestService requestService;
 
     @Override
     public Page<Event> findAll(String searchText,

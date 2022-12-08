@@ -2,9 +2,7 @@ package ru.practicum.ewm.event.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.Check;
-import org.springframework.stereotype.Component;
 import ru.practicum.ewm.category.model.Category;
 import ru.practicum.ewm.compilation.model.Compilation;
 import ru.practicum.ewm.model.Base;
@@ -18,8 +16,6 @@ import java.util.Set;
 @Setter
 @Check(constraints = "(events.event_date > CURRENT_TIMESTAMP + (2 * interval '1 hour'))")
 @Entity
-@Component
-@Slf4j
 @Table(name = "events")
 public class Event extends Base {
     @Column(length = 120, nullable = false)

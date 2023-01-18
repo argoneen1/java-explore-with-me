@@ -20,7 +20,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
             "   (:startDate is null or c.createdOn > :startDateCreated) and " +
             "   (:endDate is null or c.createdOn < :endDateCreated) and" +
             "   (:startDate is null or c.publishedOn > :startDatePublished) and " +
-            "   (:endDate is null or c.publishedOn < :endDatePublished)")
+            "   (:endDate is null or c.publishedOn < :endDatePublished) and " +
+            "   (:text is null or upper(c.text) like upper(concat('%', :text, '%')))")
     Page<Comment> search(
             String text,
             List<Long> authorIds,

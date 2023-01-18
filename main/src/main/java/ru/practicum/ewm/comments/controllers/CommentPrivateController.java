@@ -22,8 +22,8 @@ public class CommentPrivateController {
         return mapper.toGetDto(service.create(commentInsertDto));
     }
 
-    @PatchMapping("/{id}")
-    public CommentDto update(@RequestBody CommentInsertDto commentInsertDto, @PathVariable Long userId, @PathVariable Long id) {
+    @PatchMapping
+    public CommentDto update(@RequestBody CommentInsertDto commentInsertDto, @PathVariable Long userId) {
         commentInsertDto.setAuthor(userId);
         return mapper.toGetDto(service.update(commentInsertDto));
     }

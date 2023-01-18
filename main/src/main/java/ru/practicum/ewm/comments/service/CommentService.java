@@ -51,6 +51,7 @@ public interface CommentService extends FindByIdService<Comment, Long> {
     Page<Comment> search(
             String text,
             List<Long> authorIds,
+            List<Long> eventIds,
             Status status,
             LocalDateTime startDateCreated,
             LocalDateTime endDateCreated,

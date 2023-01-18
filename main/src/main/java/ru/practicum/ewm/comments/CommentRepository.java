@@ -15,6 +15,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("from Comment c " +
             "where (:status is null or :status = c.status) and " +
             "   (:authorIds is empty or c.author.id in :authorIds) and " +
+            "   (:eventIds is empty or c.event.id in :eventIds) and " +
             "   (:status is null or :status = c.status) and " +
             "   (:startDate is null or c.createdOn > :startDateCreated) and " +
             "   (:endDate is null or c.createdOn < :endDateCreated) and" +
@@ -23,6 +24,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     Page<Comment> search(
             String text,
             List<Long> authorIds,
+            List<Long> eventIds,
             Status status,
             LocalDateTime startDateCreated,
             LocalDateTime endDateCreated,

@@ -63,6 +63,7 @@ public class CommentServiceImpl implements CommentService {
     public Page<Comment> search(
             String text,
             List<Long> authorIds,
+            List<Long> eventIds,
             Status status,
             LocalDateTime startDateCreated,
             LocalDateTime endDateCreated,
@@ -72,6 +73,7 @@ public class CommentServiceImpl implements CommentService {
         return repository.search(
                 text,
                 authorIds,
+                eventIds,
                 status,
                 startDateCreated,
                 endDateCreated,

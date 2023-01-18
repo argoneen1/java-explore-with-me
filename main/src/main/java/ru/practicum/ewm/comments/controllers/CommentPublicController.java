@@ -32,6 +32,7 @@ public class CommentPublicController {
     public List<CommentDto> findAll(
             @RequestParam(required = false) String text,
             @RequestParam(required = false) List<Long> authorsIds,
+            @RequestParam(required = false) List<Long> eventIds,
             @RequestParam(required = false) LocalDateTime startDate,
             @RequestParam(required = false) LocalDateTime endDate,
             @RequestParam(required = false, defaultValue = "0") @PositiveOrZero int from,
@@ -39,6 +40,7 @@ public class CommentPublicController {
     ) {
         return service.search(text,
                         authorsIds,
+                        eventIds,
                         Status.PUBLISHED,
                         null,
                         null,

@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CommentInsertDto {
+
     private Long id;
     private String text;
     private Long author;
+    private Long event;
 }

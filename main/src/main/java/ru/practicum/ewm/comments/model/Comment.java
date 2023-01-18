@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.practicum.ewm.event.model.Event;
 import ru.practicum.ewm.model.Base;
 import ru.practicum.ewm.user.model.User;
 
@@ -23,6 +24,9 @@ public class Comment extends Base {
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
     private User author;
+    @ManyToOne
+    @JoinColumn(name = "event_id", referencedColumnName = "id", nullable = false)
+    private Event event;
     @Column
     private Status status;
     @Column

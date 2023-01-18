@@ -17,13 +17,15 @@ public class CommentPrivateController {
     private final CommentMapper mapper;
 
     @PostMapping
-    public CommentDto create(@RequestBody String text, @PathVariable Long userId) {
-        return mapper.toGetDto(service.create(new CommentInsertDto(null, text, userId)));
+    public CommentDto create(@RequestBody CommentInsertDto commentInsertDto, @PathVariable Long userId) {
+        commentInsertDto.setAuthor(userId);
+        return mapper.toGetDto(service.create(commentInsertDto));
     }
 
     @PatchMapping("/{id}")
-    public CommentDto update(@RequestBody String text, @PathVariable Long userId, @PathVariable Long id) {
-        return mapper.toGetDto(service.update(new CommentInsertDto(id, text, userId)));
+    public CommentDto update(@RequestBody CommentInsertDto commentInsertDto, @PathVariable Long userId, @PathVariable Long id) {
+        commentInsertDto.setAuthor(userId);
+        return mapper.toGetDto(service.update(commentInsertDto));
     }
 
     @DeleteMapping("/{id}")

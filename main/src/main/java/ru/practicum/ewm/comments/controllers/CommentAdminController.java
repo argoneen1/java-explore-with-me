@@ -28,6 +28,7 @@ public class CommentAdminController {
     public List<CommentDto> findAll(
             @RequestParam(required = false) String text,
             @RequestParam(required = false) List<Long> authorsIds,
+            @RequestParam(required = false) List<Long> eventIds,
             @RequestParam(required = false) LocalDateTime startDateCreated,
             @RequestParam(required = false) LocalDateTime endDateCreated,
             @RequestParam(required = false) LocalDateTime startDatePublished,
@@ -38,6 +39,7 @@ public class CommentAdminController {
     ) {
         return service.search(text,
                         authorsIds,
+                        eventIds,
                         status,
                         startDateCreated,
                         endDateCreated,

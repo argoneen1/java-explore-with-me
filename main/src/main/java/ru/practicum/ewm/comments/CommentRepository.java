@@ -14,12 +14,12 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query("from Comment c " +
             "where (:status is null or :status = c.status) and " +
-            "(:authorIds is empty or c.author.id in :authorIds) and " +
-            "(:status is null or :status = c.status) and " +
-            "(:startDate is null or c.createdOn > :startDateCreated) and " +
-            "(:endDate is null or c.createdOn < :endDateCreated) and" +
-            "(:startDate is null or c.publishedOn > :startDatePublished) and " +
-            "(:endDate is null or c.publishedOn < :endDatePublished)")
+            "   (:authorIds is empty or c.author.id in :authorIds) and " +
+            "   (:status is null or :status = c.status) and " +
+            "   (:startDate is null or c.createdOn > :startDateCreated) and " +
+            "   (:endDate is null or c.createdOn < :endDateCreated) and" +
+            "   (:startDate is null or c.publishedOn > :startDatePublished) and " +
+            "   (:endDate is null or c.publishedOn < :endDatePublished)")
     Page<Comment> search(
             String text,
             List<Long> authorIds,

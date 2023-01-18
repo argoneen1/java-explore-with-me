@@ -12,8 +12,4 @@ import ru.practicum.ewm.user.dto.UserMapper;
 @Mapper(uses = {ReferenceMapper.class, UserMapper.class, EventMapper.class})
 public interface CommentMapper extends BaseMapper<CommentInsertDto, Comment, CommentDto> {
     void update(CommentInsertDto dto, @MappingTarget Comment entity);
-
-    @Mapping(target = "authorId", source = "author.id")
-    @Mapping(target = "eventId", source = "event.id")
-    CommentDto toGetDto(Comment entity);
 }

@@ -1,7 +1,6 @@
 package ru.practicum.ewm.comments.dto;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import ru.practicum.ewm.comments.model.Comment;
 import ru.practicum.ewm.event.dto.EventMapper;
